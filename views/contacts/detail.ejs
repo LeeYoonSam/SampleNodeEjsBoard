@@ -1,0 +1,23 @@
+<% include ../header.ejs %>
+    <div class="panel panel-default">
+        <div class="panel-heading"><%=contact.title%></div>
+        <div class="panel-body">
+            <div>
+                작성일 : 
+                <%=contact.getDate.year%>년
+                <%=contact.getDate.month%>월
+                <%=contact.getDate.day%>일
+            </div>
+            
+            <%=contact.content%>
+
+        </div>
+    </div>
+
+    <a href="/contacts" class="btn btn-default">목록</a>
+    <a href="/contacts/edit/<%=contact.id%>" class="btn btn-primary">수정</a>
+    <a href="/contacts/delete/<%=contact.id%>" 
+        onclick="return confirm('삭제 하시겠습니까?')" 
+        class="btn btn-danger">삭제</a>
+
+<% include ../footer.ejs %>
