@@ -4,10 +4,10 @@ using: Nodejs & ejs
 
 
 ## npm
-npm install express
-npm install express-generator
-npm install -g nodemon
-npm install --save mongodb mongoose mongoose-auto-increment
+*npm install express
+*npm install express-generator
+*npm install -g nodemon
+*npm install --save mongodb mongoose mongoose-auto-increment
 
 
 ## create project & init ejs
