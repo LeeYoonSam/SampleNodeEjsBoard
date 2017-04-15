@@ -4,8 +4,8 @@ using: Nodejs & ejs
 
 
 ## npm
-* npm install express
-* npm install express-generator
+* npm install -g express
+* npm install -g express-generator
 * npm install -g nodemon
 * npm install --save mongodb mongoose mongoose-auto-increment
 
