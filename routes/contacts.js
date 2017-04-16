@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var ContactModel = require('../models/ContactModel');
+var CommentModel = require('../models/CommentModel');
 
 router.get('/', function (req, res) {
 
@@ -26,8 +27,34 @@ router.post('/write', function(req, res){
 });
 
 router.get('/detail/:id', function(req, res) {
+	// 게시물에 대한 정보 가져오기
 	ContactModel.findOne( { id: req.params.id }, function(err, contact) {
-		res.render('contacts/detail', { contact: contact } );
+
+		 // 해당 게시물의 코멘트 가져오기
+        CommentModel.find( { contact_id: req.params.id }, function(err, comments) {
+        	res.render('contacts/detail', { contact: contact , comments: comments } );
+        });
+	});
+});
+
+router.post('/ajax_comment/insert', function(req, res) {
+	var comment = new CommentModel({
+        content: req.body.content,
+        contact_id: parseInt(req.body.contact_id)
+    });
+
+    comment.save(function(err, comment) {
+        res.json({
+            id: comment.id,
+            content: comment.content,
+            message: "success"
+        });
+    });
+});
+
+router.post('/ajax_comment/delete', function(req, res) {
+	CommentModel.remove( { id: req.body.comment_id }, function(err) {
+		res.json({ message: "success"});
 	});
 });
 
